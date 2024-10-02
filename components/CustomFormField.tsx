@@ -13,6 +13,12 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Control } from "react-hook-form";
 
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+// import { E164Number } from "react-phone-number-input";
+// type E164Number = string;
+import { E164Number } from "libphonenumber-js/core";
+
 export enum FormFieldType {
   INPUT = "input",
   TEXTAREA = "textarea",
@@ -74,20 +80,20 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
     //       />
     //     </FormControl>
     //   );
-    // case FormFieldType.PHONE_INPUT:
-    //   return (
-    //     <FormControl>
-    //       <PhoneInput
-    //         defaultCountry="US"
-    //         placeholder={placeholder}
-    //         international
-    //         withCountryCallingCode
-    //         value={field.value as E164Number | undefined}
-    //         onChange={field.onChange}
-    //         className="input-phone"
-    //       />
-    //     </FormControl>
-    //   );
+    case FormFieldType.PHONE_INPUT:
+      return (
+        <FormControl>
+          <PhoneInput
+            defaultCountry="US"
+            placeholder={placeholder}
+            international
+            withCountryCallingCode
+            value={field.value as E164Number | undefined}
+            onChange={field.onChange}
+            className="input-phone"
+          />
+        </FormControl>
+      );
     // case FormFieldType.CHECKBOX:
     //   return (
     //     <FormControl>
